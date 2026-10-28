@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy Policy · Play 2D Games</title>
+<meta name="description" content="How Play 2D Games handles your data.">
+<link rel="stylesheet" href="fonts.css">
+<style>
+:root {
+  color-scheme: dark;
+  --space: #070e22; --panel: #0e1a39; --panel-2: #15244b; --line: #2a3b6a; --frame: #5fb4c9;
+  --cyan: #8fe3f0; --pink: #ff8fb8; --ink: #f3ecdc; --ink-soft: #a9b4d3; --butter: #f6d36b; --dark-ink: #141a2e;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--space); color: var(--ink); font: 20px/1.25 "VT323", ui-monospace, Menlo, monospace; -webkit-font-smoothing: none; }
+a { color: var(--cyan); }
+main { width: min(760px, calc(100% - 32px)); margin: 32px auto 140px; }
+.back { font-family: "Silkscreen", monospace; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; }
+h1 { font-family: "Pixelify Sans", monospace; font-weight: 700; font-size: 40px; margin: 18px 0 4px; text-shadow: -2px 0 var(--pink), 2px 0 var(--cyan), 0 4px 0 #030816; }
+.updated { color: var(--ink-soft); margin: 0 0 24px; }
+h2 { font-family: "Silkscreen", monospace; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--butter); margin: 30px 0 8px; display: flex; gap: 10px; align-items: center; }
+h2::after { content: ""; flex: 1; border-top: 2px dashed var(--line); }
+p, li { max-width: 68ch; }
+ul { padding-left: 22px; }
+li { margin: 6px 0; }
+.box { background: var(--panel); border: 2px solid var(--frame); box-shadow: 4px 4px 0 #030816; padding: 14px 16px; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; vertical-align: top; padding: 6px 8px 6px 0; border-bottom: 2px dashed var(--line); }
+th { font-family: "Silkscreen", monospace; font-size: 11px; letter-spacing: .1em; color: var(--ink-soft); font-weight: 400; }
+.btn { display: inline-block; margin-top: 8px; height: 40px; padding: 0 14px; border: 2px solid var(--dark-ink); background: var(--butter); color: var(--dark-ink); font: 12px "Silkscreen", monospace; letter-spacing: .06em; text-transform: uppercase; cursor: pointer; box-shadow: inset -3px -3px 0 rgba(0,0,0,.18), 3px 3px 0 #030816; }
+@media (max-width: 600px) { h1 { font-size: 32px; } table, tbody, tr, td, th { display: block; } thead { display: none; } td { border: 0; padding: 2px 0; } tr { border-bottom: 2px dashed var(--line); padding: 8px 0; } }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="index.html">← Play 2D Games</a>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated 28 October 2026</p>
+
+  <div class="box">
+    <p style="margin:0"><b style="color:var(--butter);font-weight:400">The short version:</b> no accounts, no names, no emails. Your game progress stays in your browser. When you finish a daily puzzle, an anonymous score is saved so everyone can see how they compare. There are no ads or tracking right now, and if that changes they only switch on if you say yes.</p>
+  </div>
+
+  <h2>Who we are</h2>
+  <p>Play 2D Games (play2dgames.com) makes small browser games, including <a href="https://relic.play2dgames.com/">Relic</a>. Questions about this policy or your data: <a href="mailto:hello@play2dgames.com">hello@play2dgames.com</a>.</p>
+
+  <h2>What we collect and why</h2>
+  <table>
+    <thead><tr><th>What</th><th>Why</th><th>Where it lives</th></tr></thead>
+    <tbody>
+      <tr><td>Game progress and settings (guesses, hints used, today's score)</td><td>So you can close the tab and pick up where you left off</td><td>Only in your browser's local storage. It never leaves your device.</td></tr>
+      <tr><td>A random player ID</td><td>So each player's score counts once per puzzle</td><td>Your browser, and alongside your score in our score database</td></tr>
+      <tr><td>Your final score for the day's puzzle, with the puzzle number and time</td><td>To show the score distribution and your percentile</td><td>Our score database (Supabase). Other players only ever see totals, never individual scores.</td></tr>
+      <tr><td>Your cookie choice</td><td>So we remember your answer and don't ask again on every game</td><td>A cookie named <code>site_consent</code> on play2dgames.com, kept for 180 days</td></tr>
+      <tr><td>Your IP address and browser details</td><td>Delivering the site and saving scores. Hosting companies log these for security and reliability.</td><td>Server logs at our hosting providers (below)</td></tr>
+    </tbody>
+  </table>
+  <p>The player ID is a random code made in your browser. It isn't linked to your name, email or any account, and we don't try to identify who you are.</p>
+
+  <h2>Cookies and similar storage</h2>
+  <ul>
+    <li><b style="color:var(--ink);font-weight:400">Essential:</b> local storage for game progress and the <code>site_consent</code> cookie. These are needed for the games to work, so they don't need your consent.</li>
+    <li><b style="color:var(--ink);font-weight:400">Advertising and statistics:</b> none are used today. If we add them, they'll only load after you choose "Accept all", and this policy will list them first.</li>
+  </ul>
+  <p>You can change your answer at any time: <button class="btn" type="button" data-consent-open>Cookie settings</button></p>
+
+  <h2>Who else handles data</h2>
+  <ul>
+    <li><b style="color:var(--ink);font-weight:400">GitHub Pages</b> hosts the website files. See the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">GitHub privacy statement</a>.</li>
+    <li><b style="color:var(--ink);font-weight:400">Supabase</b> stores the anonymous scores. See the <a href="https://supabase.com/privacy" rel="noopener">Supabase privacy policy</a>.</li>
+  </ul>
+  <p>Fonts, code libraries and images are served from our own site, not from third-party networks. The artifact photos come from The Metropolitan Museum of Art's Open Access collection (public domain).</p>
+  <p>These providers may process data outside your country, including in the United States, under their own safeguards.</p>
+
+  <h2>How long we keep it</h2>
+  <p>Scores are kept so daily statistics stay accurate, and may be deleted or summarised later. Data in your browser stays until you clear it. Your cookie choice expires after 180 days.</p>
+
+  <h2>Your rights</h2>
+  <p>Depending on where you live (for example under the GDPR, UK GDPR or California law), you can ask to see, correct or delete data about you, or object to how it's used. Because scores are anonymous, we may need your help to find yours: tell us the date, puzzle and score. You can also clear everything on your side by clearing this site's data in your browser. Email <a href="mailto:hello@play2dgames.com">hello@play2dgames.com</a>, and you can also complain to your local data protection authority.</p>
+
+  <h2>Children</h2>
+  <p>Our games are for a general audience and don't ask for personal information. If you think a child has sent us personal information, contact us and we'll delete it.</p>
+
+  <h2>Changes</h2>
+  <p>If we change how we handle data, we'll update this page and the date at the top. Big changes, like adding ads, will come with a new cookie question.</p>
+</main>
+<script src="consent.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Play 2D Games</title>
+<meta name="description" content="Small daily games about the world, its history and its treasures.">
+<meta property="og:title" content="Play 2D Games">
+<meta property="og:description" content="Small daily games about the world, its history and its treasures.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://play2dgames.com/">
+<meta property="og:image" content="https://play2dgames.com/relic-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="fonts.css">
+<style>
+/* Layout: an arcade lobby. Starfield behind, chroma pixel title, then a row of game cabinets (cards). */
+:root {
+  color-scheme: dark;
+  --space: #070e22; --panel: #0e1a39; --panel-2: #15244b; --line: #2a3b6a; --line-2: #3d5491; --frame: #5fb4c9;
+  --cyan: #8fe3f0; --pink: #ff8fb8; --ink: #f3ecdc; --ink-soft: #a9b4d3; --ink-faint: #6878a6;
+  --butter: #f6d36b; --mint: #7fe0a6; --dark-ink: #141a2e; --drop: 4px 4px 0 #030816;
+}
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body {
+  margin: 0; background: var(--space); color: var(--ink);
+  font: 20px/1.2 "VT323", ui-monospace, Menlo, monospace; -webkit-font-smoothing: none; overflow-x: hidden;
+}
+a { color: var(--cyan); }
+.sky { position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(to bottom, rgba(0,0,0,.13) 0 1px, transparent 1px 3px), radial-gradient(ellipse at 50% 30%, #11234d 0%, transparent 60%), radial-gradient(ellipse at center, transparent 55%, rgba(2,5,15,.7) 100%); }
+.sky i { position: absolute; width: 3px; height: 3px; background: var(--cyan); opacity: .15; animation: tw 5s steps(5) infinite; }
+@keyframes tw { 50% { opacity: .75; } }
+.wrap { position: relative; z-index: 1; width: min(1040px, calc(100% - 32px)); margin: 0 auto; padding: calc(48px + env(safe-area-inset-top, 0px)) 0 calc(120px + env(safe-area-inset-bottom, 0px)); }
+
+header { text-align: center; }
+.logo { margin: 0; font-family: "Pixelify Sans", monospace; font-weight: 700; font-size: clamp(44px, 9vw, 92px); letter-spacing: .08em; line-height: 1;
+  text-shadow: -3px 0 var(--pink), 3px 0 var(--cyan), 0 6px 0 #030816; }
+.pre { margin: 0 0 6px; font-family: "Silkscreen", monospace; font-size: 15px; letter-spacing: .6em; color: var(--butter); text-shadow: 0 3px 0 #030816; }
+.tag { margin: 14px 0 0; font-family: "Silkscreen", monospace; font-size: 13px; letter-spacing: .3em; text-transform: uppercase; color: var(--cyan); }
+.sub { margin: 10px auto 0; max-width: 46ch; color: var(--ink-soft); }
+
+.section { display: flex; align-items: center; gap: 12px; margin: 48px 0 16px; font-family: "Silkscreen", monospace; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); }
+.section::after { content: ""; flex: 1; border-top: 2px dashed var(--line); }
+
+.games { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.card { position: relative; display: flex; flex-direction: column; background: var(--panel); border: 2px solid var(--frame); box-shadow: var(--drop); text-decoration: none; color: inherit; transition: transform .15s steps(2); }
+a.card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #030816; }
+a.card:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 #030816; }
+a.card:focus-visible { outline: 3px solid var(--butter); outline-offset: 3px; }
+.thumb { position: relative; aspect-ratio: 1200 / 630; overflow: hidden; border-bottom: 2px solid var(--frame); background: var(--panel-2); }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumb .badge { position: absolute; left: 10px; top: 10px; background: var(--mint); color: var(--dark-ink); font-family: "Silkscreen", monospace; font-size: 11px; letter-spacing: .08em; padding: 3px 7px; box-shadow: 2px 2px 0 #030816; }
+.body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.name { font-family: "Pixelify Sans", monospace; font-weight: 700; font-size: 30px; letter-spacing: .06em; margin: 0; }
+.blurb { margin: 0; color: var(--ink-soft); flex: 1; }
+.meta { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+.meta span { font-size: 18px; color: var(--ink-faint); }
+.play { display: inline-flex; align-items: center; height: 40px; padding: 0 16px; background: var(--butter); color: var(--dark-ink); border: 2px solid var(--dark-ink); font-family: "Silkscreen", monospace; font-size: 13px; letter-spacing: .08em; box-shadow: inset -3px -3px 0 rgba(0,0,0,.18), 3px 3px 0 #030816; }
+.card.soon { border-color: var(--line-2); border-style: dashed; box-shadow: none; }
+.card.soon .thumb { border-bottom: 2px dashed var(--line-2); display: grid; place-items: center; background: repeating-linear-gradient(45deg, #0c1734 0 8px, #0e1a39 8px 16px); }
+.lock { width: 48px; height: 48px; image-rendering: pixelated; opacity: .7; }
+.card.soon .name { color: var(--ink-faint); }
+
+footer { margin-top: 64px; display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: center; font-family: "Silkscreen", monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+footer a, footer button { color: var(--ink-soft); text-decoration: none; background: none; border: 0; padding: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer; }
+footer a:hover, footer button:hover { color: var(--cyan); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="sky" id="sky" aria-hidden="true"></div>
+<div class="wrap">
+  <header>
+    <p class="pre">PLAY</p>
+    <h1 class="logo">2D GAMES</h1>
+    <p class="tag">Small daily games</p>
+    <p class="sub">Quick puzzles about the world, its history and the treasures it left behind. New ones every day, free in your browser.</p>
+  </header>
+
+  <div class="section">Games</div>
+  <div class="games">
+    <a class="card" href="https://relic.play2dgames.com/">
+      <div class="thumb"><img src="relic-card.jpg" alt="A close-up of a museum relic" width="1200" height="630"><span class="badge">DAILY</span></div>
+      <div class="body">
+        <h2 class="name">RELIC</h2>
+        <p class="blurb">One real museum object a day. Find where it was made, when, and what it is, before your Insight runs out.</p>
+        <div class="meta"><span>History · Geography</span><span class="play">PLAY ▶</span></div>
+      </div>
+    </a>
+    <div class="card soon" aria-label="Coming soon">
+      <div class="thumb"><svg class="lock" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><path fill="#6878a6" d="M4 1h4v1h1v3h1v6h-8v-6h1v-3h1zM5 2v3h2v-3z"/><path fill="#0e1a39" d="M5 7h2v2h-2z"/></svg></div>
+      <div class="body"><h2 class="name">???</h2><p class="blurb">A new game is in the workshop.</p><div class="meta"><span>Coming soon</span></div></div>
+    </div>
+    <div class="card soon" aria-label="Coming soon">
+      <div class="thumb"><svg class="lock" viewBox="0 0 12 12" shape-rendering="crispEdges" aria-hidden="true"><path fill="#6878a6" d="M4 1h4v1h1v3h1v6h-8v-6h1v-3h1zM5 2v3h2v-3z"/><path fill="#0e1a39" d="M5 7h2v2h-2z"/></svg></div>
+      <div class="body"><h2 class="name">???</h2><p class="blurb">Another one after that.</p><div class="meta"><span>Coming soon</span></div></div>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Play 2D Games</span>
+    <a href="privacy.html">Privacy</a>
+    <button type="button" data-consent-open>Cookie settings</button>
+    <a href="mailto:hello@play2dgames.com">Contact</a>
+  </footer>
+</div>
+<script>
+document.getElementById("sky").insertAdjacentHTML("beforeend", Array.from({ length: 60 }, () =>
+  `<i style="left:${(Math.random() * 100).toFixed(1)}%;top:${(Math.random() * 100).toFixed(1)}%;animation-delay:${(Math.random() * 5).toFixed(2)}s"></i>`).join(""));
+</script>
+<script src="consent.js"></script>
+</body>
+</html>
